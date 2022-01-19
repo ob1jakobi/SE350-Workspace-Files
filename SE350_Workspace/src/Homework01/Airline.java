@@ -6,6 +6,13 @@ public class Airline {
 
     private String name;
 
+    /**
+     * Constructor for initializing an Airline object.
+     * @param airlineName the <code>String</code> name of the company that operates this airline.  Must be less than
+     *                    eight characters in length.
+     * @throws IllegalArgumentException if the name of the airline is less than 0 or larger than 8 characters in length (inclusive).
+     * @throws NullPointerException if the name of this Airline is null.
+     */
     public Airline(String airlineName) throws IllegalArgumentException, NullPointerException {
         airlineNameValidator(airlineName);
     }
@@ -24,6 +31,12 @@ public class Airline {
         return name;
     }
 
+    /**
+     * Sets/updates the name of this Airline.
+     * @param airlineName the <code>String</code> name of this Airline.
+     * @throws IllegalArgumentException if the Airline name is less than 0 characters or larger than 8 characters (inclusive).
+     * @throws NullPointerException if the Airline passed is null.
+     */
     public void setAirlineName(String airlineName) throws IllegalArgumentException, NullPointerException {
         airlineNameValidator(airlineName);
     }
@@ -46,8 +59,4 @@ public class Airline {
         return Objects.hash(name);
     }
 
-    public static void main(String[] args) {
-        Airline test = new Airline("delta");
-        System.out.println(test);
-    }
 }

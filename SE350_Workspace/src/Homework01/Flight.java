@@ -12,7 +12,14 @@ public class Flight {
     private String flightNumber;
     private Date departureTime;
 
-
+    /**
+     * Constructor for initializing Flight objects.
+     * @param airline the airline operating the flight.
+     * @param originAirportDesignator the airport from which the flight departs.
+     * @param destinationAirportDesignator the airport from which the flight arrives.
+     * @param departureTime the date and time the flight is supposed to depart.
+     * @throws IllegalArgumentException if a null parameter is passed, or if the flight departure time is a past date.
+     */
     public Flight(Airline airline, Airport originAirportDesignator, Airport destinationAirportDesignator,
                   Date departureTime) throws IllegalArgumentException {
         setAirlineName(airline);
@@ -26,6 +33,11 @@ public class Flight {
         return airline;
     }
 
+    /**
+     * Allows the airline name to be updated.
+     * @param airlineName the name of the airline operating the flight.
+     * @throws IllegalArgumentException if the value passed is null.
+     */
     public void setAirlineName(Airline airlineName) throws IllegalArgumentException {
         if (airlineName == null) {
             throw new IllegalArgumentException("Null value passed as airlineName");
@@ -37,6 +49,11 @@ public class Flight {
         return origin;
     }
 
+    /**
+     * Allows the name of the airport origin/departure to be updated.
+     * @param originAirportDesignator the 3-digit airport designation for the departing airport.
+     * @throws IllegalArgumentException if the value passed is null.
+     */
     public void setOriginAirportDesignator(Airport originAirportDesignator) throws IllegalArgumentException {
         if (originAirportDesignator == null) {
             throw new IllegalArgumentException("Null value passed as airportDesignator.");
@@ -48,6 +65,11 @@ public class Flight {
         return destination;
     }
 
+    /**
+     * Allows the name of the airport destination/arrival to be updated.
+     * @param destinationAirportDesignator the 3-digit airport designation for the destination/arrival airport.
+     * @throws IllegalArgumentException if the value passed is null.
+     */
     public void setDestinationAirportDesignator(Airport destinationAirportDesignator) throws IllegalArgumentException {
         if (destinationAirportDesignator == null) {
             throw new IllegalArgumentException("Null value passed as airportDesignator.");
@@ -59,6 +81,11 @@ public class Flight {
         return departureTime;
     }
 
+    /**
+     * Sets/updates the flight's departure date and time.
+     * @param departureTime the date and time at which this flight is scheduled to depart.
+     * @throws IllegalArgumentException if the value passed is null or a past date.
+     */
     public void setDepartureTime(Date departureTime) throws IllegalArgumentException {
         if (departureTime == null) {
             throw new IllegalArgumentException("Null value passed as departureTime.");
@@ -73,6 +100,10 @@ public class Flight {
         this.flightNumber = UUID.randomUUID().toString();
     }
 
+    /**
+     * Retrieves the unique flight number for this flight.
+     * @return
+     */
     public String getFlightNumber() {
         return flightNumber;
     }
