@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Flight {
+public class CommercialFlight {
 
     private Airline airline;
     private Airport origin;
@@ -20,8 +20,8 @@ public class Flight {
      * @param departureTime the date and time the flight is supposed to depart.
      * @throws IllegalArgumentException if a null parameter is passed, or if the flight departure time is a past date.
      */
-    public Flight(Airline airline, Airport originAirportDesignator, Airport destinationAirportDesignator,
-                  Date departureTime) throws IllegalArgumentException {
+    public CommercialFlight(Airline airline, Airport originAirportDesignator, Airport destinationAirportDesignator,
+                            Date departureTime) throws IllegalArgumentException {
         setAirlineName(airline);
         setOriginAirportDesignator(originAirportDesignator);
         setDestinationAirportDesignator(destinationAirportDesignator);
@@ -102,7 +102,7 @@ public class Flight {
 
     /**
      * Retrieves the unique flight number for this flight.
-     * @return
+     * @return the flight number for this flight
      */
     public String getFlightNumber() {
         return flightNumber;
@@ -112,7 +112,7 @@ public class Flight {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Flight flight = (Flight) o;
+        CommercialFlight flight = (CommercialFlight) o;
         return airline.equals(flight.airline) && origin.equals(flight.origin) && destination.equals(flight.destination) && flightNumber.equals(flight.flightNumber) && departureTime.equals(flight.departureTime);
     }
 
