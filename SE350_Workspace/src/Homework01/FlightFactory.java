@@ -17,7 +17,11 @@ public class FlightFactory {
     public static CommercialFlight createFlight(Airline airline, Airport originAirportDesignator, Airport destinationAirportDesignator,
                                          Date departureTime, String type) throws IllegalArgumentException {
         if (type.equalsIgnoreCase("Commercial")) {
-            return new CommercialFlight(airline, originAirportDesignator, destinationAirportDesignator, departureTime);
+            try {
+                return new CommercialFlight(airline, originAirportDesignator, destinationAirportDesignator, departureTime);
+            } catch (NullPointerException e) {
+                return null;
+            }
         }
         throw new IllegalArgumentException("Please enter a valid flight type.");
     }
