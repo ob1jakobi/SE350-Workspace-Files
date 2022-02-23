@@ -7,6 +7,9 @@ public final class FlightManager {
     // The ArrayList that contains all the flights.
     private static List<CommercialFlight> flights;
 
+    // The instance
+    private static FlightManager ourInstance;
+
     /**
      * Creates flights based on the parameters.
      * @param airline the airline operating the flight.
@@ -18,8 +21,8 @@ public final class FlightManager {
      */
     public static CommercialFlight createFlight(Airline airline, Airport originAirportDesignator, Airport destinationAirportDesignator,
                                     Date departureDate, String type) {
-        if (flights == null) {
-            flights = new ArrayList<>();
+        if (ourInstance == null) {
+            ourInstance = new FlightManager();
         }
         CommercialFlight newFlight = FlightFactory.createFlight(airline, originAirportDesignator, destinationAirportDesignator,
                 departureDate, type);
@@ -42,5 +45,19 @@ public final class FlightManager {
         throw new IllegalArgumentException("No such flight exists");
     }
 
-    private FlightManager() {}
+    /**
+     * Gets the instance of this FlightManager; if none has been created, this will create a new FlightManager.
+     * @return the instance of this FlightManager.
+     * @throws Exception
+     */
+    public static FlightManager getInstance() throws Exception {
+        if (ourInstance == null) {
+            ourInstance = new FlightManager();
+        }
+        return ourInstance;
+    }
+
+    private FlightManager() {
+        flights = new ArrayList<>();
+    }
 }
