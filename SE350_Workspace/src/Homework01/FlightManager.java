@@ -5,26 +5,28 @@ import java.util.*;
 public final class FlightManager {
 
     // The ArrayList that contains all the flights.
-    private static List<CommercialFlight> flights;
+    private static List<Flight> flights;
 
-    // The instance
-    private static FlightManager ourInstance;
+    // The single instance, as part of Singleton
+    private static FlightManager flightMgrInstance;
 
     /**
      * Creates flights based on the parameters.
-     * @param airline the airline operating the flight.
+     * @param airlineName the airline operating the flight.
+     * @param passengerCapacity the capacity of passengers (for passenger flights).  If flight is not a passenger flight,
+     *                          enter 0.
      * @param originAirportDesignator the airport from which the flight departs.
      * @param destinationAirportDesignator the airport from which the flight arrives.
      * @param departureDate the date and time the flight is supposed to depart.
      * @param type if a null parameter is passed, or if the flight departure time is a past date.
      * @return the newly created <code>flight</code>.
      */
-    public static CommercialFlight createFlight(Airline airline, Airport originAirportDesignator, Airport destinationAirportDesignator,
+    public static Flight createFlight(String airlineName, int passengerCapacity, String originAirportDesignator, String destinationAirportDesignator,
                                     Date departureDate, String type) {
-        if (ourInstance == null) {
-            ourInstance = new FlightManager();
+        if (flightMgrInstance == null) {
+            flightMgrInstance = new FlightManager();
         }
-        CommercialFlight newFlight = FlightFactory.createFlight(airline, originAirportDesignator, destinationAirportDesignator,
+        Flight newFlight = FlightFactory.createFlight(airlineName, passengerCapacity, originAirportDesignator, destinationAirportDesignator,
                 departureDate, type);
         flights.add(newFlight);
         return newFlight;
@@ -36,8 +38,8 @@ public final class FlightManager {
      * @return the flight object matching the parameter <code>flightNum</code>
      * @throws IllegalArgumentException if no such flight exists with the <code>flightNum</code> passed as a parameter.
      */
-    public static CommercialFlight getFlightByNumber(String flightNum) throws IllegalArgumentException {
-        for (CommercialFlight f : flights) {
+    public static Flight getFlightByNumber(String flightNum) throws IllegalArgumentException {
+        for (Flight f : flights) {
             if (f.getFlightNumber().equals(flightNum)) {
                 return f;
             }
@@ -48,13 +50,12 @@ public final class FlightManager {
     /**
      * Gets the instance of this FlightManager; if none has been created, this will create a new FlightManager.
      * @return the instance of this FlightManager.
-     * @throws Exception
      */
-    public static FlightManager getInstance() throws Exception {
-        if (ourInstance == null) {
-            ourInstance = new FlightManager();
+    public static FlightManager getInstance() {
+        if (flightMgrInstance == null) {
+            flightMgrInstance = new FlightManager();
         }
-        return ourInstance;
+        return flightMgrInstance;
     }
 
     private FlightManager() {

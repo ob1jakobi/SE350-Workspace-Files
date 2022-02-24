@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CommercialFlight {
+public class CommercialFlight implements Flight {
 
     private Airline airline;
     private Airport origin;
@@ -61,7 +61,7 @@ public class CommercialFlight {
         this.origin = originAirportDesignator;
     }
 
-    public Airport getDestination() {
+    public Airport getDestinationAirportDesignator() {
         return destination;
     }
 
@@ -127,7 +127,7 @@ public class CommercialFlight {
         result.append("Flight{\n");
         result.append(getAirlineName()).append("\n");
         result.append(getOriginAirportDesignator()).append("\n");
-        result.append(getDestination()).append("\n");
+        result.append(getDestinationAirportDesignator()).append("\n");
         result.append("FlightNumber{");
         result.append(getFlightNumber()).append("}\n");
         result.append("DepartureTime{");
